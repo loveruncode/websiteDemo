@@ -1,0 +1,15 @@
+@media (max-width: 700px) {
+    .img-fuildr{
+       max-width: 60%;
+    }
+  }
+
+
+
+  @media (max-width: 500px) {
+    .img-fuild{
+       max-width: 100%;
+    }
+  }
+
+

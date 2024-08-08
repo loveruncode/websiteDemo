@@ -1,0 +1,43 @@
+/* MainCategory.css */
+
+/* Điều chỉnh kích thước của thẻ card */
+.custom-card {
+    height: auto;
+    width: 100%;
+  }
+  
+  /* Đảm bảo hình ảnh giữ tỷ lệ và phủ đầy card */
+  .custom-img {
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  /* Thiết lập chiều cao thẻ card cho các màn hình nhỏ hơn */
+  @media (max-width: 800px) {
+    .img-fluid{
+       height: 120px;
+       width: 120px;
+
+    }
+    .card-ne{
+       max-width: 350px;
+    }
+  }
+
+
+  @media (max-width: 550px) {
+    .img-fluid{
+       height: 100px;
+       width: 100px;
+
+    }
+    .card-ne{
+       max-width: 250px;
+    }
+  }
+  
+
+
+
+ 
+
