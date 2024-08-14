@@ -32,10 +32,10 @@ const SideCategory = () => {
                       LapTop Gaming  
                     </a>
                     <a href="/lap-top-game-ming" className="d-block mb-3">
-                      LapTop Gaming
+                      LapTop Văn Phòng
                     </a>
                     <a href="/lap-top-game-ming" className="d-block mb-3">
-                      LapTop Gaming
+                      LapTop Đồ Hoạ
                     </a>
                   </div>
                 </div>

@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SignInModal from "./SignInModal";
 import SignupModal from './Signupmodal';
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+
 const Nav = () => {
   const [modalType, setModalType] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setName] = useState('');
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("http://localhost:5114/api/user/6");
+        setName(response.data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const handleClose = () => setModalType(null);
 
@@ -19,8 +36,9 @@ const Nav = () => {
     toast.success('Đăng Xuất Thành Công');
   };
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (userName) => {
     setIsLoggedIn(true);
+    setName(userName); 
     handleClose();
   };
 
@@ -41,14 +59,14 @@ const Nav = () => {
 
           <div className="collapse navbar-collapse" id="navmenu">
             <ul className="navbar-nav ms-auto p-3">
-              <li className="nav-item mt-1">
-                <a href="/"  className="nav-link p-2">
+              <li className="nav-item mt-1 ">
+                <a href="/" className="nav-link p-2">
                   Trang Chủ
                 </a>
               </li>
               {!isLoggedIn ? (
                 <>
-                  <li className="nav-item  me-3 mt-1">
+                  <li className="nav-item me-3 mt-1">
                     <Button onClick={handleShowSignIn} className="nav-link p-2">
                       Đăng Nhập
                     </Button>
@@ -62,12 +80,14 @@ const Nav = () => {
               ) : (
                 <>
                   <li className="nav-item me-3">
+                   
                     <img
-                      src="/mamoo.png" 
+                      src="/mamoo.png"
                       alt="Avatar"
                       className="rounded-circle"
                       style={{ width: 40, height: 40 }}
                     />
+                    <span className="text-white ms-2">{name}</span> 
                   </li>
                   <li className="nav-item me-3">
                     <Button onClick={handleLogout} className="nav-link">
